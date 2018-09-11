@@ -1,0 +1,31 @@
+version: '3'
+
+networks:
+  dds_network_1:
+    external: true
+  dds_network_2:
+    external: true
+
+services:
+
+   participant1:
+    image: test
+    container_name: participant
+    command: ENTRYPOINT ["python", "test.py"]
+    cap_add: [NET_ADMIN]
+    networks:
+      - dds_network_1
+    stdin_open: true
+    tty: true
+
+   participant2:
+    image: test
+    container_name: participant
+    command: ENTRYPOINT ["python", "test.py"]
+    cap_add: [NET_ADMIN]
+    networks:
+      - dds_network_2
+    stdin_open: true
+    tty: true
+
+
